@@ -36,19 +36,19 @@ function generatePassword(){
 
   //validate at least 1 selction was made
   while(selectionMade === false ){
-    var passwordLowercase = confirm("Would you like the password to include lowercase letters?");
+    var passwordLowercase = confirm("Would you like the password to include lowercase letters?\n" + lowerArr);
     if (passwordLowercase === true){
       selectionMade = true
     }
-    var passwordUppercase = confirm("Would you like the password to include uppercase letters?");
+    var passwordUppercase = confirm("Would you like the password to include uppercase letters?\n" + upperArr);
     if (passwordUppercase === true){
       selectionMade = true
     }
-    var passwordNumbers = confirm("Would you like the password to include numbers?");
+    var passwordNumbers = confirm("Would you like the password to include numbers?\n" + numbArr);
     if (passwordNumbers === true){
       selectionMade = true
     }
-    var passwordSpecial = confirm("Would you like the password to include special characters?"); 
+    var passwordSpecial = confirm("Would you like the password to include special characters?\n" + specialArr); 
     if (passwordSpecial === true){
       selectionMade = true
     }
