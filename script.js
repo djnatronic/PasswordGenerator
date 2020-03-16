@@ -1,29 +1,29 @@
-console.log("Program Start");
-var lowerArr = "abcdefghijklmnopqrstuvwxyz"
-var upperArr = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-var numbArr = '0123456789'
-var specialArr = "!@#$%^&*()"
-var passwordLength = 0
-
 function generatePassword(){
+  //define variables
+  var lowerArr = "abcdefghijklmnopqrstuvwxyz";
+  var upperArr = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  var numbArr = '0123456789';
+  var specialArr = "!@#$%^&*()";
+  var i = 0;
   var passwordLength = 0
   var greaterLessthan = false
-  console.log("GeneratePassword Started");
-  ////ADD LOOP and Length Checking!!//////
-
+  var totalPassword = ""
+  var selectionMade = false
   
+  
+  //verify password length
   while(greaterLessthan === false){
-    console.log("while loop started")
+    
     var passwordLength = prompt("Please enter how length of password between 8 and 128");
 
-    if (passwordLength <= 3)
+    if (passwordLength < 8)
     {
-        alert('Passowrd length must be greater than 3');
+        alert('Passowrd length must be 8 or greater');
         greaterLessthan = false;
     }
-    else if (passwordLength >= 8)
+    else if (passwordLength > 128)
     {
-        alert('Password length must be less than 8');
+        alert('Password length must be 128 or less');
         greaterLessthan = false;
     }
     else
@@ -31,27 +31,89 @@ function generatePassword(){
 
   }
   
-  console.log(greaterLessthan)
+  
  
 
-  console.log ("past while loop")
-  /* var passwordLowercase = confirm("Would you like the password to include lowercase letters?");
-  var passwordUppercase = confirm("Would you like the password to include uppercase letters?");
-  var passwordNumbers = confirm("Would you like the password to include numbers?");
-  var passwordSpecial = confirm("Would you like the password to include special characters?"); */
-  
-  for(var i = 0; i < passwordLength; i++){
-  console.log(passwordLength)
-  var random = lowerArr[Math.floor((Math.random() * lowerArr.length))];
-  var lower = lower + random
+  //validate at least 1 selction was made
+  while(selectionMade === false ){
+    var passwordLowercase = confirm("Would you like the password to include lowercase letters?");
+    if (passwordLowercase === true){
+      selectionMade = true
+    }
+    var passwordUppercase = confirm("Would you like the password to include uppercase letters?");
+    if (passwordUppercase === true){
+      selectionMade = true
+    }
+    var passwordNumbers = confirm("Would you like the password to include numbers?");
+    if (passwordNumbers === true){
+      selectionMade = true
+    }
+    var passwordSpecial = confirm("Would you like the password to include special characters?"); 
+    if (passwordSpecial === true){
+      selectionMade = true
+    }
   }
 
-   
+  //build the initial password string  
+  while(i < passwordLength){
+  
 
+    if (passwordLowercase === true && totalPassword.length < passwordLength){
+      
+      var random = lowerArr[Math.floor((Math.random() * lowerArr.length))];
+      i++;
+      var totalPassword = totalPassword + random;
+    }
 
-  return lower.substring(9);
+    if (passwordUppercase === true && totalPassword.length < passwordLength){
+      
+      var random = upperArr[Math.floor((Math.random() * upperArr.length))];
+      i++;
+      var totalPassword = totalPassword + random;
+    }
+
+    if (passwordNumbers === true && totalPassword.length < passwordLength){
+      
+      var random = numbArr[Math.floor((Math.random() * numbArr.length))];
+      i++;
+      var totalPassword = totalPassword + random;
+    }
+
+    if (passwordSpecial === true && totalPassword.length < passwordLength){
+      
+      var random = specialArr[Math.floor((Math.random() * specialArr.length))];
+      i++;
+      var totalPassword = totalPassword + random;
+    }
+    
+    
+    
+    
+
+  }
+
+  
+  //randomize the password string
+  function shuffelWord (word){
+    var shuffledWord = '';
+    word = word.split('');
+    while (word.length > 0) {
+      shuffledWord +=  word.splice(word.length * Math.random() << 0, 1);
+    }
+    
+    return shuffledWord;
+    
+  }
+  
+  totalPassword = shuffelWord(totalPassword)
+  
+  //return the randomized password to the script
+  return totalPassword;
+  
 
 }
+
+
 
 //////////////////////////////////////////////////////////////
 // DO NOT TOUCH THE CODE BELOW
