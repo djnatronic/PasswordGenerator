@@ -14,11 +14,11 @@ function generatePassword(){
   //verify password length
   while(greaterLessthan === false){
     
-    var passwordLength = prompt("Please enter how length of password between 8 and 128");
+    var passwordLength = prompt("Please enter length of password between 8 and 128");
 
     if (passwordLength < 8)
     {
-        alert('Passowrd length must be 8 or greater');
+        alert('Password length must be 8 or greater');
         greaterLessthan = false;
     }
     else if (passwordLength > 128)
